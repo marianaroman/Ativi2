@@ -22,7 +22,7 @@ self.addEvventListener('activate',function(evt){
   caches.keyn().then(function(keys){
 return Promise.all(
 keys.filter(key => key ! == cacheName)
-.map(key => caches.delete(key))  
+.map(key => caches.delete(key))
 )
   })
 })
@@ -33,3 +33,15 @@ sel.addEvventListener('fetch',function(evt){
 return res || fecth(evt.request)
 )}
 )}
+function shareImage(titulo, texto,url) {
+
+if (navigator.share) {
+  navigator.share({
+    title: 'titulo',
+    text: 'texto',
+    url: 'url',
+  })
+    .then(() => console.log('Successful share'))
+    .catch((error) => console.log('Error sharing', error));
+}
+}
